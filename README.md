@@ -27,3 +27,10 @@ The base URL must be absolute. Passing a relative base throws `TypeError`; resol
 
 - `resolveContentLocation(contentLocation: string, baseUrl: string): { url: string, absolute: boolean, empty: boolean }`
 - `isAbsoluteUrl(url: string): boolean`
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
